@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HMS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .dashboard-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: var(--dark-color);
+            color: #fff;
+            padding: 20px;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            color: #ccc;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .sidebar ul li a:hover {
+            color: #fff;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #f4f4f4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <h3>Admin Panel</h3>
+            <ul>
+                <li><a onclick="showSection('users')">All Users</a></li>
+                <li><a onclick="showSection('doctors')">Doctors</a></li>
+                <li><a onclick="showSection('patients')">Patients</a></li>
+                <li><a onclick="showSection('appointments')">Appointments</a></li>
+                <li><a id="logoutBtn">Logout</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h2>Admin Dashboard</h2>
+
+            <div id="usersSection">
+                <h3>All Users</h3>
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTable">
+                            <!-- Users loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="doctorsSection" style="display:none;">
+                <h3>Registered Doctors</h3>
+                <div class="card">
+                    <tbody id="doctorsTable">
+                        <!-- Doctors loaded here -->
+                    </tbody>
+                </div>
+            </div>
+
+            <div id="patientsSection" style="display:none;">
+                <h3>Registered Patients</h3>
+                <div class="card">
+                    <tbody id="patientsTable">
+                        <!-- Patients loaded here -->
+                    </tbody>
+                </div>
+            </div>
+
+            <div id="appointmentsSection" style="display:none;">
+                <h3>All Appointments</h3>
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Doctor</th>
+                                <th>Patient</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointmentsTable">
+                            <!-- Appointments loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
