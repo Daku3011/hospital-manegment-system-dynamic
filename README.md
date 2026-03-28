@@ -28,6 +28,12 @@ A dynamic, web-based hospital management solution built with Node.js, Express, S
     npm run dev
     ```
 
+4.  **Seed Dummy Data**:
+    If you want to populate the database with test data:
+    ```bash
+    node seed.js
+    ```
+
 3.  **Access the application**:
     Open [http://localhost:3000](http://localhost:3000) in your browser.
 
