@@ -3,6 +3,7 @@ const User = require('./User');
 const Patient = require('./Patient');
 const Doctor = require('./Doctor');
 const Appointment = require('./Appointment');
+const SupportInquiry = require('./SupportInquiry');
 
 // User Relationships
 User.hasOne(Doctor, { foreignKey: 'userId', onDelete: 'CASCADE' });
@@ -23,5 +24,6 @@ module.exports = {
     User,
     Doctor,
     Patient,
-    Appointment
+    Appointment,
+    SupportInquiry
 };

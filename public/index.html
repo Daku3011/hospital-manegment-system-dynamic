@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hospital Management System</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chatbot.css">
     <style>
         .hero {
             background: var(--primary-color);
@@ -61,6 +62,178 @@
             width: auto;
             text-decoration: none;
         }
+
+        .about-section {
+            padding: 80px 20px;
+            background: #f9f9f9;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-section h2 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .contact-section {
+            padding: 80px 20px;
+            background: #fff;
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .info-card {
+            background: #f4f4f4;
+            padding: 25px;
+            border-radius: 10px;
+            min-width: 250px;
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h4 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Contact Layout & Form Styles */
+        .contact-layout {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .contact-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-form-wrapper {
+            flex: 1.2;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eaeaea;
+        }
+
+        .contact-form-wrapper h3 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.4em;
+        }
+
+        .contact-form-wrapper .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .contact-form-wrapper label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .contact-form-wrapper input, .contact-form-wrapper textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #dcdcdc;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .contact-form-wrapper input:focus, .contact-form-wrapper textarea:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        .support-result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+            text-align: left;
+        }
+
+        .support-result.success {
+            background-color: #e6f4ea;
+            border: 1px solid #137333;
+            color: #137333;
+            display: block;
+        }
+
+        .support-result.ai-resolved {
+            background-color: #e8f0fe;
+            border: 1px solid #1a73e8;
+            color: #1a73e8;
+            display: block;
+        }
+
+        @media (max-width: 900px) {
+            .contact-layout {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .features {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .feature-card {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -91,9 +264,130 @@
         </div>
     </div>
 
+    <div class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>About Us</h2>
+                <p>Welcome to our Hospital Management System (HMS), a state-of-the-art platform designed to revolutionize how healthcare providers manage their daily operations. Our mission is to bridge the gap between patients, doctors, and healthcare administrators through seamless technology.</p>
+                <p>With years of experience in health-tech, we've developed a suite of tools that prioritize patient care, reduce administrative overhead, and ensure that medical records are accessible yet highly secure.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-section" id="contact">
+        <div class="contact-container">
+            <h2>Contact & Patient Support</h2>
+            <div class="contact-layout">
+                <div class="contact-details">
+                    <div class="info-card">
+                        <h4>Email</h4>
+                        <p>support@hospital.com</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Phone</h4>
+                        <p>+1-234-567-890</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Address</h4>
+                        <p>123 Medical Plaza, Cityville</p>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper">
+                    <h3>Submit Support Ticket / Inquiry</h3>
+                    <form id="patientSupportForm">
+                        <div class="form-group">
+                            <label for="supportName">Full Name</label>
+                            <input type="text" id="supportName" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="supportEmail">Email Address</label>
+                            <input type="email" id="supportEmail" required placeholder="john@example.com" spellcheck="false">
+                        </div>
+                        <div class="form-group">
+                            <label for="supportSubject">Subject</label>
+                            <input type="text" id="supportSubject" required placeholder="Appointment issue, billing question, general query…">
+                        </div>
+                        <div class="form-group">
+                            <label for="supportMessage">Message</label>
+                            <textarea id="supportMessage" rows="4" required placeholder="How can our staff or assistant help you?"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Request</button>
+                    </form>
+                    <div id="supportFormResult" class="support-result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="text-center" style="padding: 20px; background: #333; color: #fff; margin-top: 50px;">
         <p>&copy; 2026 Hospital Management System. All rights reserved.</p>
     </footer>
+
+    <script src="js/chatbot.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('patientSupportForm');
+            const resultBox = document.getElementById('supportFormResult');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                resultBox.className = 'support-result';
+                resultBox.style.display = 'none';
+
+                const name = document.getElementById('supportName').value;
+                const email = document.getElementById('supportEmail').value;
+                const subject = document.getElementById('supportSubject').value;
+                const message = document.getElementById('supportMessage').value;
+
+                try {
+                    const res = await fetch('/api/support/inquire', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ name, email, subject, message })
+                    });
+                    
+                    const data = await res.json();
+                    
+                    if (res.ok && data.inquiry) {
+                        form.reset();
+                        if (data.inquiry.status === 'resolved_by_ai') {
+                            resultBox.className = 'support-result ai-resolved';
+                            resultBox.innerHTML = `
+                                <strong>✉️ Inquiry Received & Resolved (AI Auto-Response):</strong><br>
+                                <p style="margin-top: 8px; font-style: italic;">"${data.inquiry.aiResponse}"</p>
+                                <span style="font-size: 11px; color: #555; margin-top: 5px; display: block;">Ticket ID: #${data.inquiry.id} | Classified as: ${data.inquiry.category}</span>
+                            `;
+                        } else {
+                            resultBox.className = 'support-result success';
+                            resultBox.innerHTML = `
+                                <strong>✓ Inquiry Submitted Successfully!</strong><br>
+                                A customer support representative will review your message and reply via email shortly.<br>
+                                <span style="font-size: 11px; color: #555; margin-top: 5px; display: block;">Ticket ID: #${data.inquiry.id} | Pending Review</span>
+                            `;
+                        }
+                    } else {
+                        resultBox.className = 'support-result';
+                        resultBox.style.display = 'block';
+                        resultBox.style.backgroundColor = '#fce8e6';
+                        resultBox.style.border = '1px solid #c5221f';
+                        resultBox.style.color = '#c5221f';
+                        resultBox.textContent = data.message || 'Failed to submit inquiry. Please try again.';
+                    }
+                } catch (err) {
+                    console.error(err);
+                    resultBox.className = 'support-result';
+                    resultBox.style.display = 'block';
+                    resultBox.style.backgroundColor = '#fce8e6';
+                    resultBox.style.border = '1px solid #c5221f';
+                    resultBox.style.color = '#c5221f';
+                    resultBox.textContent = 'Error connecting to server. Please check your network.';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

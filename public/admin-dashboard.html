@@ -83,6 +83,7 @@
                 <li><a onclick="showSection('doctors')">Doctors</a></li>
                 <li><a onclick="showSection('patients')">Patients</a></li>
                 <li><a onclick="showSection('appointments')">Appointments</a></li>
+                <li><a onclick="showSection('support')">Support Inquiries</a></li>
                 <li><a id="logoutBtn">Logout</a></li>
             </ul>
         </div>
@@ -139,6 +140,26 @@
                         </thead>
                         <tbody id="appointmentsTable">
                             <!-- Appointments loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="supportSection" style="display:none;">
+                <h3>Support Inquiries & Chatbot Logs</h3>
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Inquirer Details</th>
+                                <th>Topic & Message</th>
+                                <th>AI Auto-Response</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="supportTable">
+                            <!-- Support inquiries loaded here -->
                         </tbody>
                     </table>
                 </div>

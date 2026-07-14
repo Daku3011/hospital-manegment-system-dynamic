@@ -41,13 +41,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('doctorsSection').style.display = 'none';
         document.getElementById('patientsSection').style.display = 'none';
         document.getElementById('appointmentsSection').style.display = 'none';
+        document.getElementById('supportSection').style.display = 'none';
 
         document.getElementById(`${sectionId}Section`).style.display = 'block';
 
         if (sectionId === 'users') loadUsers();
         if (sectionId === 'doctors') {
             const doctors = await fetchData('doctors');
-            // Logic to render doctors table... simplified for brevity, reusing users table structure logic would be better but let's just dump it
             const div = document.querySelector('#doctorsSection .card');
             div.innerHTML = '<table><thead><tr><th>Name</th><th>Email</th><th>Specialization</th></tr></thead><tbody>' +
                 doctors.map(d => `<tr><td>${d.User.name}</td><td>${d.User.email}</td><td>${d.specialization}</td></tr>`).join('') +
@@ -74,6 +74,73 @@ document.addEventListener('DOMContentLoaded', async () => {
                 `;
                 tbody.appendChild(tr);
             });
+        }
+        if (sectionId === 'support') loadSupportInquiries();
+    };
+
+    async function loadSupportInquiries() {
+        try {
+            const res = await fetch('/api/support/inquiries', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const inquiries = await res.json();
+            const tbody = document.getElementById('supportTable');
+            tbody.innerHTML = '';
+
+            inquiries.forEach(inq => {
+                const tr = document.createElement('tr');
+                
+                let badgeClass = 'status-pending';
+                if (inq.status === 'resolved_by_ai') badgeClass = 'status-approved';
+                if (inq.status === 'resolved_by_staff') badgeClass = 'status-completed';
+
+                tr.innerHTML = `
+                    <td>
+                        <strong>${inq.name}</strong><br>
+                        <small>${inq.email}</small>
+                    </td>
+                    <td>
+                        <strong>[${inq.category}] ${inq.subject}</strong><br>
+                        <p style="margin-top:5px; font-size: 13px;">${inq.message}</p>
+                        <small style="color: #888;">Submitted: ${new Date(inq.createdAt).toLocaleString()}</small>
+                    </td>
+                    <td>
+                        <p style="font-size: 13px; font-style: italic; white-space: pre-wrap;">${inq.aiResponse || 'No AI response generated'}</p>
+                    </td>
+                    <td>
+                        <span class="status-badge ${badgeClass}">${inq.status}</span>
+                    </td>
+                    <td>
+                        <button onclick="toggleResolveInquiry(${inq.id}, '${inq.status}')" class="btn" style="padding: 5px 10px; font-size: 12px; width: auto;">
+                            ${inq.status === 'resolved_by_staff' ? 'Mark Pending' : 'Resolve'}
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        } catch (err) {
+            console.error('Error loading support inquiries:', err);
+        }
+    }
+
+    window.toggleResolveInquiry = async function(id, currentStatus) {
+        const newStatus = currentStatus === 'resolved_by_staff' ? 'pending' : 'resolved_by_staff';
+        try {
+            const res = await fetch(`/api/support/inquiries/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ status: newStatus })
+            });
+            if (res.ok) {
+                loadSupportInquiries();
+            } else {
+                alert('Failed to update status');
+            }
+        } catch (err) {
+            console.error(err);
         }
     };
 });

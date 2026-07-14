@@ -31,10 +31,12 @@ const authRoutes = require('./src/routes/authRoutes');
 const doctorRoutes = require('./src/routes/doctorRoutes');
 const patientRoutes = require('./src/routes/patientRoutes');
 const adminRoutes = require('./src/routes/adminRoutes');
+const supportRoutes = require('./src/routes/supportRoutes');
 app.use('/api/auth', authRoutes);
 app.use('/api/doctor', doctorRoutes);
 app.use('/api/patient', patientRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/support', supportRoutes);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
